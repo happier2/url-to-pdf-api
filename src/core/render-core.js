@@ -40,6 +40,7 @@ async function render(_opts = {}) {
   const browser = await puppeteer.launch({
     headless: !config.DEBUG_MODE,
     ignoreHTTPSErrors: opts.ignoreHttpsErrors,
+    executablePath: config.PUPPETEER_CHROMIUM_PATH || undefined,
     args: ['--disable-gpu', '--no-sandbox', '--disable-setuid-sandbox'],
     sloMo: config.DEBUG_MODE ? 250 : undefined,
   });

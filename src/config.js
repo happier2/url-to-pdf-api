@@ -7,6 +7,8 @@ const config = {
   LOG_LEVEL: process.env.LOG_LEVEL,
   ALLOW_HTTP: process.env.ALLOW_HTTP === 'true',
   DEBUG_MODE: process.env.DEBUG_MODE === 'true',
+  PUPPETEER_CHROMIUM_PATH: process.env.PUPPETEER_CHROMIUM_PATH,
+  PUPPETEER_CHROMIUM_ARGS: ['--no-sandbox', '--disable-gpu'],
   CORS_ORIGIN: process.env.CORS_ORIGIN || '*',
   API_TOKENS: [],
 };
