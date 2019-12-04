@@ -201,7 +201,7 @@ function logOpts(opts) {
     supressedOpts.html = '...';
   }
 
-  logger.info(`Rendering with opts: ${JSON.stringify(supressedOpts, null, 2)}`);
+  logger.info(`Rendering with opts: ${JSON.stringify(supressedOpts, null, 1)}`);
 }
 
 module.exports = {

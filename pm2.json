@@ -1,0 +1,22 @@
+{
+    "apps": [
+      {
+        "script": "src/index.js",
+        "env": {
+          "PORT": 80,
+          "NODE_ENV": "production",
+          "PUPPETEER_CHROMIUM_PATH": "/bin/chromium",
+          "ALLOW_HTTP": true
+        },
+        "name": "url2pdf",
+        "error_file": "logs/err-ssr.log",
+        "out_file": "logs/out-ssr.log",
+        "merge_logs": false,
+        "exec_mode": "cluster",
+        "instances": 4,
+        "autorestart": true,
+        "max_memory_restart": "100M",
+        "log_date_format": "YYYY-MM-DD HH:mm Z"
+      }
+    ]
+  }
