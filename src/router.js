@@ -33,7 +33,7 @@ function createRouter() {
       allowUnknownQuery: false,
     },
   };
-  router.get('/api/render', validate(getRenderSchema), render.getRender);
+  router.get('/url2pdf/api/render', validate(getRenderSchema), render.getRender);
 
   const postRenderSchema = {
     body: renderBodySchema,
