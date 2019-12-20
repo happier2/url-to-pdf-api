@@ -27,7 +27,7 @@ port: TODO
 * Renders lazy loaded elements. *(scrollPage option)*
 * Supports optional `x-api-key` authentication. *(`API_TOKENS` env var)*
 
-Usage is as simple as http://197.0.192.200/api/render?url=http://google.com. There's also a `POST /api/render` if you prefer to send options in the body.
+Usage is as simple as http://197.0.192.200/url2pdf/api/render?url=http://google.com. There's also a `POST /url2pdf/api/render` if you prefer to send options in the body.
 
 **🔍 Why?**
 
@@ -50,56 +50,56 @@ A request to sleeping dyno may take even 30 seconds.*
 
 **The most minimal example, render google.com**
 
-http://197.0.192.200/api/render?url=http://google.com
+http://197.0.192.200/url2pdf/api/render?url=http://google.com
 
 **The most minimal example, render google.com as PNG image**
 
-http://197.0.192.200/api/render?output=screenshot&url=http://google.com
+http://197.0.192.200/url2pdf/api/render?output=screenshot&url=http://google.com
 
 
 **Use the default @media print instead of @media screen.**
 
-http://197.0.192.200/api/render?url=http://google.com&emulateScreenMedia=false
+http://197.0.192.200/url2pdf/api/render?url=http://google.com&emulateScreenMedia=false
 
 **Use scrollPage=true which tries to reveal all lazy loaded elements. Not perfect but better than without.**
 
-http://197.0.192.200/api/render?url=http://www.andreaverlicchi.eu/lazyload/demos/lazily_load_lazyLoad.html&scrollPage=true
+http://197.0.192.200/url2pdf/api/render?url=http://www.andreaverlicchi.eu/lazyload/demos/lazily_load_lazyLoad.html&scrollPage=true
 
 **Render only the first page.**
 
-http://197.0.192.200/api/render?url=https://en.wikipedia.org/wiki/Portable_Document_Format&pdf.pageRanges=1
+http://197.0.192.200/url2pdf/api/render?url=https://en.wikipedia.org/wiki/Portable_Document_Format&pdf.pageRanges=1
 
 **Render A5-sized PDF in landscape.**
 
-http://197.0.192.200/api/render?url=http://google.com&pdf.format=A5&pdf.landscape=true
+http://197.0.192.200/url2pdf/api/render?url=http://google.com&pdf.format=A5&pdf.landscape=true
 
 **Add 2cm margins to the PDF.**
 
-http://197.0.192.200/api/render?url=http://google.com&pdf.margin.top=2cm&pdf.margin.right=2cm&pdf.margin.bottom=2cm&pdf.margin.left=2cm
+http://197.0.192.200/url2pdf/api/render?url=http://google.com&pdf.margin.top=2cm&pdf.margin.right=2cm&pdf.margin.bottom=2cm&pdf.margin.left=2cm
 
 **Wait for extra 1000ms before render.**
 
-http://197.0.192.200/api/render?url=http://google.com&waitFor=1000
+http://197.0.192.200/url2pdf/api/render?url=http://google.com&waitFor=1000
 
 
 **Download the PDF with a given attachment name**
 
-http://197.0.192.200/api/render?url=http://google.com&attachmentName=google.pdf
+http://197.0.192.200/url2pdf/api/render?url=http://google.com&attachmentName=google.pdf
 
 **Wait for an element macthing the selector `input` appears.**
 
-http://197.0.192.200/api/render?url=http://google.com&waitFor=input
+http://197.0.192.200/url2pdf/api/render?url=http://google.com&waitFor=input
 
 **Render HTML sent in JSON body**
 
 ```bash
-curl -o html.pdf -XPOST -d'{"html": "<body>test</body>"}' -H"content-type: application/json" http://197.0.192.200/api/render
+curl -o html.pdf -XPOST -d'{"html": "<body>test</body>"}' -H"content-type: application/json" http://197.0.192.200/url2pdf/api/render
 ```
 
 **Render HTML sent as text body**
 
 ```bash
-curl -o html.pdf -XPOST -d@page.html -H"content-type: text/html" http://197.0.192.200/api/render
+curl -o html.pdf -XPOST -d@page.html -H"content-type: text/html" http://197.0.192.200/url2pdf/api/render
 ```
 
 ## API
@@ -126,7 +126,7 @@ is quite simple, check it out. Render flow:
   * Else if output is `screenshot` rendering is done with **`page.screenshot(options)`** where options matches `screenshot.*`.
 
 
-### GET /api/render
+### GET /url2pdf/api/render
 
 All options are passed as query parameters.
 Parameter names match [Puppeteer options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md).
@@ -191,11 +191,11 @@ screenshot.clip.height | number | - | Specifies height of clipping region of the
 **Example:**
 
 ```bash
-curl -o google.pdf http://197.0.192.200/api/render?url=http://google.com
+curl -o google.pdf http://197.0.192.200/url2pdf/api/render?url=http://google.com
 ```
 
 
-### POST /api/render - (JSON)
+### POST /url2pdf/api/render - (JSON)
 
 All options are passed in a JSON body object.
 Parameter names match [Puppeteer options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md).
@@ -250,17 +250,17 @@ The only required parameter is `url`.
 **Example:**
 
 ```bash
-curl -o google.pdf -XPOST -d'{"url": "http://google.com"}' -H"content-type: application/json" http://197.0.192.200/api/render
+curl -o google.pdf -XPOST -d'{"url": "http://google.com"}' -H"content-type: application/json" http://197.0.192.200/url2pdf/api/render
 ```
 
 ```bash
-curl -o html.pdf -XPOST -d'{"html": "<body>test</body>"}' -H"content-type: application/json" http://197.0.192.200/api/render
+curl -o html.pdf -XPOST -d'{"html": "<body>test</body>"}' -H"content-type: application/json" http://197.0.192.200/url2pdf/api/render
 ```
 
-### POST /api/render - (HTML)
+### POST /url2pdf/api/render - (HTML)
 
 HTML to render is sent in body. All options are passed in query parameters.
-Supports exactly the same query parameters as `GET /api/render`, except `url`
+Supports exactly the same query parameters as `GET /url2pdf/api/render`, except `url`
 paremeter.
 
 *Remember that relative links do not work.*
@@ -269,5 +269,5 @@ paremeter.
 
 ```bash
 curl -o receipt.html https://rawgit.com/wildbit/postmark-templates/master/templates_inlined/receipt.html
-curl -o html.pdf -XPOST -d@receipt.html -H"content-type: text/html" http://197.0.192.200/api/render?pdf.scale=1
+curl -o html.pdf -XPOST -d@receipt.html -H"content-type: text/html" http://197.0.192.200/url2pdf/api/render?pdf.scale=1
 ```
