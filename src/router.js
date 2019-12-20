@@ -49,6 +49,11 @@ function createRouter() {
   };
   router.post('/api/render', validate(postRenderSchema), render.postRender);
 
+  router.get(/url2pdf/, (req, res) => {
+    res.send('ok');
+  });
+
+
   return router;
 }
 
