@@ -6,7 +6,7 @@
 
 **Server IP and port**
 
-development: 
+development:
 
 ip: 197.0.192.200
 
@@ -14,9 +14,9 @@ port: 80
 
 production:
 
-ip: TODO
+ip: 40.49.79.12
 
-port: TODO
+port: 80
 
 **⭐️ Features:**
 
@@ -153,8 +153,8 @@ viewport.hasTouch | boolean | `false` | Specifies if viewport supports touch eve
 viewport.isLandscape | boolean | `false` | Specifies if viewport is in landscape mode.
 cookies[0][name] | string | - | Cookie name (required)
 cookies[0][value] | string | - | Cookie value (required)
-cookies[0][url] | string | - | Cookie url
-cookies[0][domain] | string | - | Cookie domain
+cookies[0][url] | string | - | Cookie url (`url` OR `domain` required)
+cookies[0][domain] | string | - | Cookie domain (`url` OR `domain` required)
 cookies[0][path] | string | - | Cookie path
 cookies[0][expires] | number | - | Cookie expiry in unix time
 cookies[0][httpOnly] | boolean | - | Cookie httpOnly
